@@ -30,6 +30,15 @@ class MutantsApplicationTests {
 						"TCACTG"};
 
 		assertTrue(mutantService.isMutant(dna));
+
+		String[] dnaMala = {"ATGCGAA",
+						 "CAGTGC",
+						 "TTATGT",
+						 "AGAAGG",
+						 "CCCCTA",
+						 "TCACTG"};
+
+		assertFalse(mutantService.isMutant(dnaMala));
 	}
 
 	@Test
@@ -57,6 +66,42 @@ class MutantsApplicationTests {
 		DNASample sample = new DNASample(dna);
 		sample.printMatrix();
 		assertTrue(true);
+	}
+
+	@Test
+	void validarMatrix() {
+		//boolean isMutant(String[] dna);
+		String[] dnaBueno = {"ATGCGA",
+						"CAGTGC",
+						"TTATTT",
+						"AGACGG",
+						"GCGTCA",
+						"TCACTG"};
+		DNASample sampleBueno = new DNASample(dnaBueno);
+		
+		assertTrue(sampleBueno.isValid());
+
+		String[] dnaMalo1 = {"ATGCGX",
+						"CAGTGC",
+						"TTATTTG",
+						"AGACGG",
+						"GCGTCA",
+						"TCACTG"};
+		DNASample sampleMalo1 = new DNASample(dnaMalo1);
+		
+		assertFalse(sampleMalo1.isValid());
+
+
+		//boolean isMutant(String[] dna);
+		String[] dnaMalo2Minuscula = {"ATGCGA",
+						"CAGTGC",
+						"TTATTT",
+						"AGAcGG",
+						"GCGTCA",
+						"TCACTG"};
+		DNASample sampleMaloMinuscula = new DNASample(dnaMalo2Minuscula);
+
+		assertFalse(sampleMaloMinuscula.isValid());
 	}
 
 }
